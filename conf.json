@@ -1,0 +1,16 @@
+{
+	"plugins": ["plugins/markdown"],
+	"source": {
+		"includePattern": "web\\\\lib\\\\dew\\.js"
+	},
+	"opts": {
+		"readme": "Home.md",
+		"recurse": true,
+		"tutorials": "tutorials"
+	},
+	"templates": {
+		"default": {
+			"useLongnameInNav": true
+		}
+	}
+}
