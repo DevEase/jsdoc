@@ -105,7 +105,7 @@ dew.command("Game.Start");
 Using a success callback if you do need output:
 
 ```
-dew.command("Player.Name", function (name) {
+dew.command("Player.Name", {}, function (name) {
 	alert("Your name is " + name + "!");
 });
 ```
