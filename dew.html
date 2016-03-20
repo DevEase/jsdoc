@@ -73,7 +73,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line149">line 149</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -209,7 +209,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line220">line 220</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line299">line 299</a>
     </li></ul></dd>
     
 
@@ -519,7 +519,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line233">line 233</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line312">line 312</a>
     </li></ul></dd>
     
 
@@ -650,7 +650,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line350">line 350</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line499">line 499</a>
     </li></ul></dd>
     
 
@@ -695,6 +695,330 @@
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getGameVariantInfo"><span class="type-signature">(static) </span>getGameVariantInfo<span class="signature">(onSuccess, onFailure)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Gets info about the current game variant.</p>
+<p>If game variant info is not available, onFailure will be called with <a href="global.html#DewError">DewError.NOT_AVAILABLE</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#GameVariantInfoSuccessCallback">GameVariantInfoSuccessCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The success callback. It will be passed information about the game variant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#FailureCallback">FailureCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The failure callback.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line385">line 385</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#GameVariantInfoSuccessCallback">GameVariantInfoSuccessCallback</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getMapVariantInfo"><span class="type-signature">(static) </span>getMapVariantInfo<span class="signature">(onSuccess, onFailure)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Gets info about the current map variant.</p>
+<p>If map variant info is not available, onFailure will be called with <a href="global.html#DewError">DewError.NOT_AVAILABLE</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MapVariantInfoSuccessCallback">MapVariantInfoSuccessCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The success callback. It will be passed information about the map variant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#FailureCallback">FailureCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The failure callback.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line358">line 358</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="global.html#MapVariantInfoSuccessCallback">MapVariantInfoSuccessCallback</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -848,7 +1172,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line173">line 173</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line252">line 252</a>
     </li></ul></dd>
     
 
@@ -992,7 +1316,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line205">line 205</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line284">line 284</a>
     </li></ul></dd>
     
 
@@ -1146,7 +1470,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line279">line 279</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line416">line 416</a>
     </li></ul></dd>
     
 
@@ -1165,6 +1489,8 @@
             <li><a href="global.html#event:console">event:console</a></li>
         
             <li><a href="global.html#event:mpevent">event:mpevent</a></li>
+        
+            <li><a href="global.html#event:loadprogress">event:loadprogress</a></li>
         </ul>
     </dd>
     
@@ -1370,7 +1696,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line256">line 256</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line335">line 335</a>
     </li></ul></dd>
     
 
@@ -1558,7 +1884,7 @@ You can use this as a simple means of sending messages between screens.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line185">line 185</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line264">line 264</a>
     </li></ul></dd>
     
 
@@ -1600,13 +1926,13 @@ You can use this as a simple means of sending messages between screens.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Mar 16 2016 21:29:52 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 19 2016 21:15:58 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
