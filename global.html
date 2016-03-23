@@ -96,6 +96,222 @@
 
         
             
+<h4 class="name" id="CommandType"><span class="type-signature">(readonly) </span>CommandType<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    <p>Console command and variable types.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>COMMAND</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A command.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>INT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An integer variable.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>INT64</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A 64-bit integer variable.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>FLOAT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A floating-point variable.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>STRING</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A string variable.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="DewError"><span class="type-signature">(readonly) </span>DewError<span class="type-signature"> :number</span></h4>
 
 
@@ -325,6 +541,29 @@
             
 
             <td class="description last"><p>The requested information is not available.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>COMMAND_FAILED</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The console command failed to execute successfully.</p></td>
         </tr>
 
     
@@ -717,7 +956,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line92">line 92</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -933,7 +1172,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line55">line 55</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -1356,7 +1595,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line69">line 69</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1381,6 +1620,538 @@
         <h3 class="subsection-title">Type Definitions</h3>
 
         
+                
+
+    
+
+    <h4 class="name" id="CommandListSuccessCallback"><span class="type-signature"></span>CommandListSuccessCallback<span class="signature">(commands)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Called when <a href="dew.html#.getCommands">dew.getCommands</a> succeeds.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>commands</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of available commands.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#CommandType">CommandType</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of the command or variable.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>module</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The module name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the command or variable. This includes the module prefix.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>shortName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The short name of the command or variable.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A description to display in a help listing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current value of the variable. For commands, this will be <code>null</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The default value of the variable. For commands, this will be <code>null</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>minValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The minimum value of the variable. For string variables and commands, this will be <code>null</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The maximum value of the variable. For string variables and commands, this will be <code>null</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>replicated</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the variable should be synchronized to clients.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>archived</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the variable should be saved when the config file is written.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hidden</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the command or variable should be omitted from a help listing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hostOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the command or variable can only be used by the game host.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hideValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the variable's value should be omitted from a help listing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>true</code> if the command or variable can only be set internally.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>arguments</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A list of arguments for the command. Each string will contain a value name, a space, and then a description. For variables, this will be empty.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line466">line 466</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="dew.html#.getCommands">dew.getCommands</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
                 
 
     
@@ -1580,7 +2351,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line434">line 434</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line508">line 508</a>
     </li></ul></dd>
     
 
@@ -1806,7 +2577,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line242">line 242</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line280">line 280</a>
     </li></ul></dd>
     
 
@@ -2147,7 +2918,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line400">line 400</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line439">line 439</a>
     </li></ul></dd>
     
 
@@ -2403,7 +3174,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line373">line 373</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line412">line 412</a>
     </li></ul></dd>
     
 
@@ -2541,7 +3312,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line235">line 235</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line273">line 273</a>
     </li></ul></dd>
     
 
@@ -2691,7 +3462,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line470">line 470</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line544">line 544</a>
     </li></ul></dd>
     
 
@@ -2783,7 +3554,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line452">line 452</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line526">line 526</a>
     </li></ul></dd>
     
 
@@ -2951,7 +3722,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line488">line 488</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line562">line 562</a>
     </li></ul></dd>
     
 
@@ -3141,7 +3912,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line478">line 478</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line552">line 552</a>
     </li></ul></dd>
     
 
@@ -3332,7 +4103,7 @@ This can only be received while the screen is active.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line459">line 459</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line533">line 533</a>
     </li></ul></dd>
     
 
@@ -3425,7 +4196,7 @@ The data passed to this event is the data that was passed to <a href="dew.html#.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line444">line 444</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line518">line 518</a>
     </li></ul></dd>
     
 
@@ -3463,13 +4234,13 @@ The data passed to this event is the data that was passed to <a href="dew.html#.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 19 2016 21:15:58 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 22 2016 22:21:10 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

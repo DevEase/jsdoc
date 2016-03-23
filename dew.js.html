@@ -71,7 +71,12 @@ DewError = {
     /**
      * The requested information is not available.
      */
-    NOT_AVAILABLE: 7
+    NOT_AVAILABLE: 7,
+
+    /**
+     * The console command failed to execute successfully.
+     */
+    COMMAND_FAILED: 8
 };
 
 /**
@@ -129,6 +134,39 @@ GameMode = {
     TERRITORIES: 8,
     ASSAULT: 9,
     INFECTION: 10
+};
+
+/**
+ * Console command and variable types.
+ * 
+ * @readonly
+ * @enum {number}
+ */
+CommandType = {
+    /**
+     * A command.
+     */
+    COMMAND: 0,
+
+    /**
+     * An integer variable.
+     */
+    INT: 1,
+
+    /**
+     * A 64-bit integer variable.
+     */
+    INT64: 2,
+
+    /**
+     * A floating-point variable.
+     */
+    FLOAT: 3,
+
+    /**
+     * A string variable.
+     */
+    STRING: 4
 };
 
 (function () {
@@ -340,7 +378,8 @@ GameMode = {
     /**
      * (ASYNCHRONOUS) Runs a console command.
      * 
-     * This will always succeed unless an error occurs while calling the method itself.
+     * If the command does not run successfully, onFailure will be called with [DewError.COMMAND_FAILED]{@link DewError}.
+     * The error message will be the command output.
      *
      * @name dew.command
      * @function
@@ -348,7 +387,7 @@ GameMode = {
      * @param {object} [options] - Additional options that control how the command should run.
      * @param {boolean} [options.internal=false] - If set to true, then internal commands can be executed.
      * @param {SuccessCallback} [onSuccess] - The success callback. It will be passed the string returned by the command.
-     * @param {FailureCallback} [onFailure] - The failure callback.
+     * @param {FailureCallback} [onFailure] - The failure callback. If the command fails with [DewError.COMMAND_FAILED]{@link DewError}, this will be called with the error message set to the command output.
      */
     dew.command = function (command, options, onSuccess, onFailure) {
         dew.callMethod("command", function () {
@@ -439,6 +478,41 @@ GameMode = {
      * @param {number} info.rounds - The number of rounds.
      * @param {number} info.scoreToWin - The score-to-win (-1 if unlimited).
      * @see dew.getGameVariantInfo
+     */
+
+    /**
+     * (ASYNCHRONOUS) Gets a list of available console commands.
+     * 
+     * @param {CommandListSuccessCallback} onSuccess - The success callback. It will be passed an array of objects containing command info.
+     * @param {FailureCallback} onFailure - The failure callback.
+     * @see CommandListSuccessCallback
+     */
+    dew.getCommands = function (onSuccess, onFailure) {
+        dew.callMethod("commands", {}, onSuccess, onFailure, jsonResultMapping);
+    }
+
+    /**
+     * Called when {@link dew.getCommands} succeeds.
+     *
+     * @callback CommandListSuccessCallback
+     * @param {object[]} commands - An array of available commands.
+     * @param {CommandType} commands[].type - The type of the command or variable.
+     * @param {string} commands[].module - The module name.
+     * @param {string} commands[].name - The name of the command or variable. This includes the module prefix.
+     * @param {string} commands[].shortName - The short name of the command or variable.
+     * @param {string} commands[].description - A description to display in a help listing.
+     * @param {*} commands[].value - The current value of the variable. For commands, this will be `null`.
+     * @param {*} commands[].defaultValue - The default value of the variable. For commands, this will be `null`.
+     * @param {*} commands[].minValue - The minimum value of the variable. For string variables and commands, this will be `null`.
+     * @param {*} commands[].maxValue - The maximum value of the variable. For string variables and commands, this will be `null`.
+     * @param {boolean} commands[].replicated - `true` if the variable should be synchronized to clients.
+     * @param {boolean} commands[].archived - `true` if the variable should be saved when the config file is written.
+     * @param {boolean} commands[].hidden - `true` if the command or variable should be omitted from a help listing.
+     * @param {boolean} commands[].hostOnly - `true` if the command or variable can only be used by the game host.
+     * @param {boolean} commands[].hideValue - `true` if the variable's value should be omitted from a help listing.
+     * @param {boolean} commands[].internal - `true` if the command or variable can only be set internally.
+     * @param {string[]} commands[].arguments - A list of arguments for the command. Each string will contain a value name, a space, and then a description. For variables, this will be empty.
+     * @see dew.getCommands
      */
 
     /**
@@ -550,13 +624,13 @@ GameMode = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 19 2016 21:15:58 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 22 2016 22:21:10 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
