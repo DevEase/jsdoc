@@ -1,5 +1,11 @@
 {
+	"GettingStarted": {
+		"title": "Getting Started"
+	},
 	"CommonTasks": {
 		"title": "Common Tasks"
+	},
+	"Debugging": {
+		"title": "Debugging"
 	}
 }
