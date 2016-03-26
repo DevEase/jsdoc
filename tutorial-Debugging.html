@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Tutorial: Debugging</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,41 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
-
-    
-
-
-
-    
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
+    <h1 class="page-title">Tutorial: Debugging</h1>
 
     <section>
-        <article><p>This documents how to use dew.js to create your own HTML overlays for ElDewrito.</p>
-<p>Most functions are located in the <a href="dew.html">dew namespace</a>.</p>
-<p>Check out the <a href="tutorial-CommonTasks.html">Common Tasks</a> tutorial for quick information on how to get started.</p></article>
-    </section>
 
+<header>
+    
 
+    <h2>Debugging</h2>
+</header>
 
+<article>
+    <p>ElDewrito provides a special web debugging mode which you can use to debug screens.
+It is activated by default in debug builds, and you can activate it in release builds by passing the <code>-webdebug</code> command-line argument to eldorado.exe.</p>
+<p>When web debugging mode is active, the following features are enabled:</p>
+<ul>
+<li>CEF log verbosity is turned on.</li>
+<li>The CEF remote debugger will listen on port 8884.</li>
+<li>Pressing F5 will reload all screens.</li>
+<li>Pressing F6 will reload the screen layer completely (intended for editing internal files).</li>
+<li>Pressing F7 will open Chrome and point it to the remote debugger.</li>
+</ul>
+</article>
 
-
+</section>
 
 </div>
 

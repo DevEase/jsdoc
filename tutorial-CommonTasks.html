@@ -28,35 +28,8 @@
 </header>
 
 <article>
-    <h2>Setup</h2><p>The Web UI files are located in the mods\ui\web folder in your ElDewrito install. The dew:// protocol is mounted here. Create a new directory inside the screens folder and place all of your screen files in there. Your main HTML page should be named index.html.</p>
-<p>Your screen itself will be loaded into its own iframe that fills the page. It is your responsibility to ensure that your screen contents are displayed at the correct position. Make sure that your screen correctly responds to the window being resized.</p>
-<p>You always need to import dew.js:</p>
-<pre class="prettyprint source"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;dew://lib/dew.js&quot;>&lt;/script></code></pre><p>Optionally, feel free to use local jQuery as well:</p>
-<pre class="prettyprint source"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;dew://lib/jquery-2.2.1.min.js&quot;>&lt;/script></code></pre><h2>screens.json</h2><p>screens.json lists all of the screens to load. You must add your screen to it in order to be able to use it. Each screen has the following structure:</p>
-<ul>
-<li><code>id</code> - A unique ID string to assign to the screen.</li>
-<li><code>url</code> - The screen's URL. This is not required as long as you set <code>var</code> instead.</li>
-<li><code>var</code> - If <code>url</code> is not set, the name of a console variable to get the screen URL from (e.g. &quot;Game.MenuURL&quot;).</li>
-<li><code>fallbackUrl</code> - A URL to use if the main URL can't be accessed. This should always point to a dew:// URL.</li>
-<li><code>captureInput</code> - Set this to <code>true</code> to make your screen capture game input. Use <code>false</code> to create an overlay.</li>
-<li><code>zIndex</code> - Screens with larger <code>zIndex</code> values will be displayed on top.</li>
-</ul>
-<p>For example, this is what the console screen definition looks like:</p>
-<pre class="prettyprint source"><code>{
-    &quot;id&quot;: &quot;console&quot;,
-    &quot;url&quot;: &quot;dew://screens/console/&quot;,
-    &quot;captureInput&quot;: true,
-    &quot;zIndex&quot;: 10
-}</code></pre><h2>Debugging</h2><p>ElDewrito provides a special web debugging mode which you can use to debug screens.
-It is activated by default in debug builds, and you can activate it in release builds by passing the <code>-webdebug</code> command-line argument to eldorado.exe.</p>
-<p>When web debugging mode is active, the following features are enabled:</p>
-<ul>
-<li>CEF log verbosity is turned on.</li>
-<li>The CEF remote debugger will listen on port 8884.</li>
-<li>Pressing F5 will reload all screens.</li>
-<li>Pressing F6 will reload the screen layer completely (intended for editing internal files).</li>
-<li>Pressing F7 will open Chrome and point it to the remote debugger.</li>
-</ul>
+    <h2>Getting Started</h2><p>See <a href="tutorial-GettingStarted.html">Getting Started</a>.</p>
+<h2>Debugging</h2><p>See <a href="tutorial-Debugging.html">Debugging</a>.</p>
 <h2>Detecting when your screen is shown or hidden</h2><p>Make sure to avoid performing any intensive activities while your screen is hidden. Screens are always hidden by default. You can use the <code>show</code> and <code>hide</code> events to detect when your screen is shown or hidden:</p>
 <pre class="prettyprint source"><code>dew.on(&quot;show&quot;, function (event) {
     // This code will be run when your screen is shown.
@@ -91,13 +64,13 @@ dew.on(&quot;hide&quot;, function (event) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 22 2016 22:21:10 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 26 2016 15:49:16 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
