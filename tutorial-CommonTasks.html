@@ -42,19 +42,39 @@ dew.on(&quot;hide&quot;, function (event) {
 <pre class="prettyprint source"><code>dew.show();</code></pre><p>Hide the current screen:</p>
 <pre class="prettyprint source"><code>dew.hide();</code></pre><p>Show the server browser:</p>
 <pre class="prettyprint source"><code>dew.show(&quot;browser&quot;);</code></pre><p>Hide the server browser:</p>
-<pre class="prettyprint source"><code>dew.hide(&quot;browser&quot;);</code></pre><h3>Running console commands</h3><p><strong>Do not use RCON to run console commands. It is slow, unreliable, and the protocol is subject to change in the future.</strong></p>
+<pre class="prettyprint source"><code>dew.hide(&quot;browser&quot;);</code></pre><h3>Calling asynchronous methods</h3><p>Some methods, such as <code>dew.command</code>, will need to communicate with the game in order to operate.
+Because JavaScript code is executed in a separate process, these methods will immediately return a <code>Promise</code> that will be fulfilled once the operation completes.
+If you aren't familiar with promises, here is very a basic skeleton for you to use:</p>
+<pre class="prettyprint source"><code>dew.methodName(arguments).then(function (result) {
+
+    // This will be called once the method completes.
+    // result is the value returned by the method.
+
+}).catch(function (error) {
+
+    // This will be called if an error occurs.
+    // If you don't care to handle errors, then there is no need to use catch().
+
+});</code></pre><h3>Running console commands</h3><p><strong>Do not use RCON to run console commands. It is slow, unreliable, and the protocol is subject to change in the future.</strong></p>
 <p>Basic usage if you don't need output:</p>
-<pre class="prettyprint source"><code>dew.command(&quot;Game.Start&quot;);</code></pre><p>Using a success callback if you do need output:</p>
-<pre class="prettyprint source"><code>dew.command(&quot;Player.Name&quot;, {}, function (name) {
+<pre class="prettyprint source"><code>dew.command(&quot;Game.Start&quot;);</code></pre><p>Using the promise if you do need output:</p>
+<pre class="prettyprint source"><code>dew.command(&quot;Player.Name&quot;).then(function (name) {
     alert(&quot;Your name is &quot; + name + &quot;!&quot;);
+});</code></pre><p>Reading the value of an internal variable (such as a client-side one):</p>
+<pre class="prettyprint source"><code>dew.command(&quot;Server.SprintEnabledClient&quot;, { internal: true }).then(function (val) {
+    if (val === &quot;1&quot;) {
+        alert(&quot;Sprint is enabled.&quot;);
+    } else {
+        alert(&quot;Sprint is disabled.&quot;);
+    }
 });</code></pre><h3>Pinging a server</h3><p><strong>Note that the ping method is currently broken and reports incorrect ping times. It will be fixed soon.</strong></p>
 <p>To ping a server, you first need to register a global <code>pong</code> event handler. Make sure to check the IP address in the event object, because pong events are broadcasted to all screens.</p>
 <pre class="prettyprint source"><code>dew.on(&quot;pong&quot;, function (event) {
     // event.data.address contains the IPv4 address
     // event.data.latency contains the latency in milliseconds
 });</code></pre><p>Next, send the server a ping. If it responds, your <code>pong</code> handler will be triggered.</p>
-<pre class="prettyprint source"><code>dew.ping(&quot;12.34.56.78&quot;);</code></pre><h3>Getting the ElDewrito version</h3><p>Since all communications with ElDewrito are asynchronous, you have to call the getVersion function with a success callback:</p>
-<pre class="prettyprint source"><code>dew.getVersion(function (version) {
+<pre class="prettyprint source"><code>dew.ping(&quot;12.34.56.78&quot;);</code></pre><h3>Getting the ElDewrito version</h3><p>You can use <code>dew.getVersion</code> to get the current version of ElDewrito. Remember that this runs asynchronously.</p>
+<pre class="prettyprint source"><code>dew.getVersion().then(function (version) {
     alert(version);
 });</code></pre>
 </article>
@@ -64,13 +84,13 @@ dew.on(&quot;hide&quot;, function (event) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 26 2016 15:49:16 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Mar 28 2016 05:22:34 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

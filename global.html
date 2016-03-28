@@ -294,7 +294,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line117">line 117</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -312,7 +312,7 @@
 
         
             
-<h4 class="name" id="DewError"><span class="type-signature">(readonly) </span>DewError<span class="type-signature"> :number</span></h4>
+<h4 class="name" id="DewErrorCode"><span class="type-signature">(readonly) </span>DewErrorCode<span class="type-signature"> :number</span></h4>
 
 
 
@@ -602,7 +602,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line7">line 7</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -956,7 +956,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line97">line 97</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -1172,7 +1172,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line60">line 60</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -1595,7 +1595,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line74">line 74</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -1621,73 +1621,36 @@
 
         
                 
+<h4 class="name" id="ConsoleCommand">ConsoleCommand</h4>
 
-    
-
-    <h4 class="name" id="CommandListSuccessCallback"><span class="type-signature"></span>CommandListSuccessCallback<span class="signature">(commands)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
 <div class="description">
-    <p>Called when <a href="dew.html#.getCommands">dew.getCommands</a> succeeds.</p>
+    <p>Contains information about a console command and its current state.</p>
 </div>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
 
 
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-    <h5>Parameters:</h5>
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>commands</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An array of available commands.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -2077,13 +2040,87 @@
     </tbody>
 </table>
 
-            </td>
-        </tr>
+
+
+
+<dl class="details">
 
     
-    </tbody>
-</table>
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line447">line 447</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="dew.html#.getCommands">dew.getCommands</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="DewPromise">DewPromise</h4>
+
+
+
+
+<div class="description">
+    <p>A promise made by an asynchronous ElDewrito method.</p>
+<p>If the promise is rejected for a reason related to ElDewrito, it will be rejected with a <a href="DewError.html">DewError</a> object.
+This object includes an <a href="global.html#DewErrorCode">error code</a> which can be used to easily figure out what went wrong.</p>
+<p>If the promise is rejected for any other reason, it may be rejected with a generic Error.
+Therefore, you must use <code>instanceof DewError</code> to check that the error is actually an ElDewrito error before getting specific information.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Promise.&lt;(*|Error)></span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -2118,33 +2155,16 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line466">line 466</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line288">line 288</a>
     </li></ul></dd>
     
 
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="dew.html#.getCommands">dew.getCommands</a></li>
-        </ul>
-    </dd>
-    
 
     
 </dl>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2351,7 +2371,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line508">line 508</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line488">line 488</a>
     </li></ul></dd>
     
 
@@ -2379,299 +2399,36 @@
 
             
                 
+<h4 class="name" id="GameVariantInfo">GameVariantInfo</h4>
 
-    
-
-    <h4 class="name" id="FailureCallback"><span class="type-signature"></span>FailureCallback<span class="signature">(err)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
 <div class="description">
-    <p>The onFailure callback is called when an asynchronous method fails to execute.</p>
+    <p>Contains information about a game variant.</p>
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-                <td class="name"><code>err</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">object</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Information about the error that occurred.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>code</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#DewError">DewError</a></span>
+        </li>
+    </ul>
 
 
-            
-            </td>
 
-            
 
-            
 
-            <td class="description last"><p>The internal error code.</p></td>
-        </tr>
+    <h5 class="subsection-title">Properties:</h5>
 
     
 
-        <tr>
-            
-                <td class="name"><code>message</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The error message.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>method</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the internal method that was called.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line280">line 280</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-                
-
-    
-
-    <h4 class="name" id="GameVariantInfoSuccessCallback"><span class="type-signature"></span>GameVariantInfoSuccessCallback<span class="signature">(info)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Called when <a href="dew.html#.getGameVariantInfo">dew.getGameVariantInfo</a> succeeds.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>info</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The game variant info.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -2877,15 +2634,6 @@
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
 
 
 
@@ -2918,7 +2666,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line439">line 439</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line423">line 423</a>
     </li></ul></dd>
     
 
@@ -2941,85 +2689,38 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             
                 
+<h4 class="name" id="MapVariantInfo">MapVariantInfo</h4>
 
-    
-
-    <h4 class="name" id="MapVariantInfoSuccessCallback"><span class="type-signature"></span>MapVariantInfoSuccessCallback<span class="signature">(info)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
 <div class="description">
-    <p>Called when <a href="dew.html#.getMapVariantInfo">dew.getMapVariantInfo</a> succeeds.</p>
+    <p>Contains information about a map variant.</p>
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-                <td class="name"><code>info</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">object</span>
 
 
-            
-            </td>
+        </li>
+    </ul>
 
-            
 
-            
 
-            <td class="description last"><p>The map variant info.</p>
-                <h6>Properties</h6>
-                
 
-<table class="params">
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
     <thead>
     <tr>
         
@@ -3133,15 +2834,6 @@
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
 
 
 
@@ -3174,7 +2866,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line412">line 412</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line401">line 401</a>
     </li></ul></dd>
     
 
@@ -3191,147 +2883,6 @@
 
     
 </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-                
-
-    
-
-    <h4 class="name" id="SuccessCallback"><span class="type-signature"></span>SuccessCallback<span class="signature">(result)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>The onSuccess callback is called when an asynchronous method succeeds.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>result</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The result value. The type of this depends on the method that was called.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line273">line 273</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3462,7 +3013,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line544">line 544</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line524">line 524</a>
     </li></ul></dd>
     
 
@@ -3554,7 +3105,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line526">line 526</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line506">line 506</a>
     </li></ul></dd>
     
 
@@ -3722,7 +3273,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line562">line 562</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line542">line 542</a>
     </li></ul></dd>
     
 
@@ -3912,7 +3463,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line552">line 552</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line532">line 532</a>
     </li></ul></dd>
     
 
@@ -4103,7 +3654,7 @@ This can only be received while the screen is active.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line533">line 533</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line513">line 513</a>
     </li></ul></dd>
     
 
@@ -4196,7 +3747,7 @@ The data passed to this event is the data that was passed to <a href="dew.html#.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line518">line 518</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line498">line 498</a>
     </li></ul></dd>
     
 
@@ -4234,13 +3785,13 @@ The data passed to this event is the data that was passed to <a href="dew.html#.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewError">DewError</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 26 2016 15:49:16 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Mar 28 2016 05:22:34 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
