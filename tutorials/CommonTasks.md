@@ -47,6 +47,26 @@ Hide the server browser:
 dew.hide("browser");
 ```
 
+### Calling asynchronous methods
+
+Some methods, such as `dew.command`, will need to communicate with the game in order to operate.
+Because JavaScript code is executed in a separate process, these methods will immediately return a `Promise` that will be fulfilled once the operation completes.
+If you aren't familiar with promises, here is very a basic skeleton for you to use:
+
+```
+dew.methodName(arguments).then(function (result) {
+
+	// This will be called once the method completes.
+	// result is the value returned by the method.
+
+}).catch(function (error) {
+
+	// This will be called if an error occurs.
+	// If you don't care to handle errors, then there is no need to use catch().
+
+});
+```
+
 ### Running console commands
 
 **Do not use RCON to run console commands. It is slow, unreliable, and the protocol is subject to change in the future.**
@@ -57,11 +77,23 @@ Basic usage if you don't need output:
 dew.command("Game.Start");
 ```
 
-Using a success callback if you do need output:
+Using the promise if you do need output:
 
 ```
-dew.command("Player.Name", {}, function (name) {
+dew.command("Player.Name").then(function (name) {
 	alert("Your name is " + name + "!");
+});
+```
+
+Reading the value of an internal variable (such as a client-side one):
+
+```
+dew.command("Server.SprintEnabledClient", { internal: true }).then(function (val) {
+	if (val === "1") {
+		alert("Sprint is enabled.");
+	} else {
+		alert("Sprint is disabled.");
+	}
 });
 ```
 
@@ -86,10 +118,10 @@ dew.ping("12.34.56.78");
 
 ### Getting the ElDewrito version
 
-Since all communications with ElDewrito are asynchronous, you have to call the getVersion function with a success callback:
+You can use `dew.getVersion` to get the current version of ElDewrito. Remember that this runs asynchronously.
 
 ```
-dew.getVersion(function (version) {
+dew.getVersion().then(function (version) {
 	alert(version);
 });
 ```
