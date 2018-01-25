@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Tutorial: Signal Server</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Tutorial: Signal Server</h1>
+
+    <section>
+
+<header>
+    
+
+    <h2>Signal Server</h2>
+</header>
+
+<article>
+    <h2>Usage</h2><p>The signal server is for communicating with other player's screens with small amounts of data. If you need to move a lot of information or stream data to a peer, use the signal server to setup an rtc connection and send it directly to them instead of through the signal server.</p>
+<h2>First steps</h2><p>To begin, your screen should wait for the signal-ready event.</p>
+<p>This is emitted after connecting to a server and recieving a packet with the necessary information to use the signal server</p>
+<pre class="prettyprint source"><code>dew.on(&quot;signal-ready&quot;, function (info) {
+    //Your client has now been assigned a password to connect to the signal server with
+    //info.data.server and info.data.password are needed
+});</code></pre><p>If you do not listen for the signal-ready event you can also retrieve this information using the server.websocketinfo command</p>
+<p>This is useful for debugging since you can refresh the screen instead of needing to disconnect from the server and reconnecting.</p>
+<pre class="prettyprint source"><code>dew.command(&quot;server.websocketinfo&quot;).then(function (socketInfo) {
+    var info = JSON.parse(socketInfo);
+});</code></pre><p>The info object above contains: </p>
+<ul>
+<li><code>server</code> - The server to connect to in the format ip:port</li>
+<li><code>password</code> - Used for authenticating with the signal server</li>
+</ul>
+<h2>Connecting to the signal server</h2><p>Connection is done with a websocket and a subprotocol that is unique to your screen.</p>
+<p>Your websocket should implement these functions at the time of creation</p>
+<ul>
+<li>'onmessage' - For communication with other peers as well as possible disconnect reasons</li>
+<li>'onopen' - So we can send our password at the first chance</li>
+<li>'onclose' - For cleanup after the player leaves the server</li>
+</ul>
+<pre class="prettyprint source"><code>var MyWebSocket = new WebSocket(&quot;ws://&quot; + info.server, &quot;MySubprotocol&quot;);
+MyWebSocket.onopen = function(){
+    MyWebSocket.send(info.password);
+}
+MyWebSocket.onmessage = function(msg){
+    if(msg.data == &quot;try again later&quot;){} // The client was not been fully established and should wait a moment before sending the password again
+    else if(msg.data == &quot;bad password&quot;){} // Your password was incorrect
+    else{
+        //parse messages from other players
+    }
+}
+MyWebSocket.onclose = function(){
+    //We should do any cleanup that needs to happen, here.
+}</code></pre><p>The first message sent after connecting should be your password.</p>
+<pre class="prettyprint source"><code>dew.on(&quot;signal-ready&quot;, function (info) {
+    var MyWebSocket = new WebSocket(&quot;ws://&quot; + info.data.server, &quot;MySubprotocol&quot;);
+    MyWebSocket.onopen = function(){
+        MyWebSocket.send(info.data.password);
+    }
+});</code></pre><p>Once you have sent your password, you will be free to submit messages to the signal server. </p>
+<h2>Subprotocol</h2><p><strong>The subprotocol is important.</strong> Only peers that implement the same subprotocol when connecting to the signal server will be able to communicate with each other.</p>
+<p>This is defined in the websocket's constructor.</p>
+<pre class="prettyprint source"><code>var MyWebSocket = new WebSocket(&quot;ws://&quot; + info.server, &quot;MySubprotocol&quot;);</code></pre><p>With the above snippet, only other websockets that use the subprotocol <code>MySubprotocol</code> will be able to receive messages from this socket.</p>
+<h1>Talking to other screens</h1><h2>Sending data</h2><p>The signal server requires that all data sent has either of the below objects in json format</p>
+<ul>
+<li><code>broadcast</code> - The data sent will be sent to all connected peers on the same subbprotocol</li>
+<li><code>sendTo</code> - The data sent will only be sent to the peer specific</li>
+</ul>
+<p>An example of sending a broadcast</p>
+<pre class="prettyprint source"><code>MyWebSocket.send(JSON.stringify({
+    'broadcast': 'This is a message that other peers will see',
+    'extraData': 'We can send other things as long as broadcast or sendTo is used'
+}));</code></pre><p>Sending data to a specific peer is similar but uses the player's displayname + uid in the format name|uid attached to the sendTo object</p>
+<pre class="prettyprint source"><code>MyWebSocket.send(JSON.stringify({
+    'sendTo': 'Maximumgame|8ff4e9111f9089c2',
+    'extraData': 'We can send other things as long as broadcast or sendTo is used'
+}));</code></pre><h2>Receiving data</h2><p>When receiving data, the signal server will attach a peer's uid with their data automatically</p>
+<pre class="prettyprint source"><code>MyWebSocket.onmessage = function(msg){
+    var data = JSON.parse(msg.data);
+    console.log(data.uid); // Maximumgame|8ff4e9111f9089c2 - Automatically created by the signal server
+}</code></pre><p>With this, your screen can uniquely identify where a message came from</p>
+<h3>Signal server specific events</h3><ul>
+<li><code>leave</code> - emitted when a player leaves or the socket disconnects. The leave object only contains a string of the uid of the player that has left. Similar to the uid object sent with other messages.</li>
+</ul>
+<h2>Blacklist</h2><p>The signal server will reject your message if anything below exists in the json sent</p>
+<ul>
+<li><code>uid</code> - The server will create this for you. There is no need to attach your own.</li>
+<li><code>leave</code> - The server will generate this message for you when your socket disconnects or the player leaves the game.</li>
+</ul>
+<h2>Example</h2><p>An implementation of a screen sending <code>Hello world!</code> when joining a server and a client responding with <code>Hi there!</code></p>
+<pre class="prettyprint source"><code>var MyWebSocket = null;
+$(document).ready(function () {
+    dew.on(&quot;signal-ready&quot;, function (info) {
+        MyWebSocket = new WebSocket(&quot;ws://&quot; + info.data.server, &quot;HelloWorldExample&quot;);
+        MyWebSocket.onmessage = ParseMessage;
+        MyWebSocket.onopen = function(){
+            MyWebSocket.send(info.data.password); //send does not block so we need to wait a moment before sending our broadcast
+            setTimeout(function(){
+                MyWebSocket.send(JSON.stringify({
+                    'broadcast': 'Hello world!'
+                }));
+            }, 1000);
+        }
+    });
+});
+
+function ParseMessage(msg){
+    var data = JSON.parse(msg.data);
+    if(data.broadcast && data.broadcast == 'Hello world!'){
+        MyWebSocket.send(JSON.stringify({
+            'sendTo': data.uid,
+            'customMessage': 'Hi there!'
+        }));
+    }
+    else if(data.sendTo && data.customMessage){ //The message was directed to us, we also check that the customMessage object exists
+        console.log(&quot;Received: &quot; + data.customMessage + &quot; from: &quot; + data.uid);
+    }
+    else if(data.leave){
+        console.log(data.leave &quot; has left&quot;);
+    }
+}</code></pre>
+</article>
+
+</section>
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:chat">chat</a></li><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:scoreboard">scoreboard</a></li><li><a href="global.html#event:serverconnect">serverconnect</a></li><li><a href="global.html#event:show">show</a></li><li><a href="global.html#event:signal-ready">signal-ready</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li><li><a href="tutorial-SignalServer.html">Signal Server</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 24 2018 20:22:32 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

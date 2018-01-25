@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * Creates a new DewError object which represents an ElDewrito communication error.
- * 
+ *
  * @class
  * @param {string} message - The error message.
  * @param {DewErrorCode} [code] - The error code.
@@ -63,7 +63,7 @@ function DewError(message, code, method) {
 
 /**
  * Gets the name of the error's code.
- * 
+ *
  * @returns {string} A string representing the error's code.
  */
 DewError.prototype.getCodeName = function () {
@@ -144,7 +144,7 @@ MPEventAudience = {
 
 /**
  * Multiplayer event categories.
- * 
+ *
  * @readonly
  * @enum {number}
  */
@@ -167,7 +167,7 @@ MPEventCategory = {
 
 /**
  * Game modes.
- * 
+ *
  * @readonly
  * @enum {number}
  */
@@ -187,7 +187,7 @@ GameMode = {
 
 /**
  * Console command and variable types.
- * 
+ *
  * @readonly
  * @enum {number}
  */
@@ -267,6 +267,9 @@ CommandType = {
                     resolve(value);
                 },
                 onFailure: function (code, message) {
+                    if(method=="command"){
+                        method = method+": "+args.command;
+                    }
                     reject(new DewError(message, code, method));
                 }
             });
@@ -315,19 +318,19 @@ CommandType = {
 
     /**
      * A promise made by an asynchronous ElDewrito method.
-     * 
+     *
      * If the promise is rejected for a reason related to ElDewrito, it will be rejected with a {@link DewError} object.
      * This object includes an [error code]{@link DewErrorCode} which can be used to easily figure out what went wrong.
      *
      * If the promise is rejected for any other reason, it may be rejected with a generic Error.
      * Therefore, you must use `instanceof DewError` to check that the error is actually an ElDewrito error before getting specific information.
-     * 
+     *
      * @typedef {Promise&lt;*|Error>} DewPromise
      */
 
     /**
      * (ASYNCHRONOUS) Retrieves the current version of ElDewrito.
-     * 
+     *
      * @returns {DewPromise&lt;string>} - A promise for the version string.
      */
     dew.getVersion = function () {
@@ -336,9 +339,9 @@ CommandType = {
 
     /**
      * Requests to show a screen.
-     * 
+     *
      * If the requested screen is still loading, it will not be shown until it finishes.
-     * 
+     *
      * This will always send a [show]{@link event:show} event to the screen, even if it is already visible.
      * You can use this as a simple means of sending messages between screens.
      *
@@ -354,7 +357,7 @@ CommandType = {
 
     /**
      * Requests to hide a screen.
-     * 
+     *
      * This will send a [hide]{@link event:hide} event to the screen if it is visible.
      *
      * @param {string} [id] - The ID of the screen to hide. If this is null or omitted, the current screen will be hidden.
@@ -364,10 +367,22 @@ CommandType = {
             screen: id || null
         });
     }
+	
+	/**
+     * Sends a dew event to another screen
+     *
+	 * @param {string} [eventName] - The name of the event for another screen to receive.
+	 * @param {object} [data] - Data to pass to the screen.
+     */
+	dew.notify = function(eventName, data){
+		postUiMessage(eventName, {
+			data: data || {}
+		});
+	}
 
     /**
      * Requests to change this screen's input capture state.
-     * 
+     *
      * @param {boolean} capture - true to capture mouse and keyboard input, false to release.
      */
     dew.captureInput = function (capture) {
@@ -375,10 +390,22 @@ CommandType = {
             capture: !!capture
         });
     }
+	
+	/**
+     * Requests to change this screen's pointer capture state.
+     * This is overridden by dew.captureInput
+     *
+     * @param {boolean} capture - true to only capture mouse input, false to release.
+     */
+    dew.capturePointer = function (capture) {
+        postUiMessage("capturePointer", {
+            capture: !!capture
+        });
+    }
 
     /**
      * (ASYNCHRONOUS) Runs a console command.
-     * 
+     *
      * If the command does not run successfully, the promise will be rejected with a [DewErrorCode.COMMAND_FAILED]{@link DewErrorCode} error.
      * The error message will be the command output.
      *
@@ -399,7 +426,7 @@ CommandType = {
 
     /**
      * (ASYNCHRONOUS) Pings a server.
-     * 
+     *
      * The screen will receive a [pong]{@link event:pong} event if the server responds.
      *
      * **This method is currently broken and will report ping times that are much higher than they should be.**
@@ -407,19 +434,20 @@ CommandType = {
      * @param {string} address - The IPv4 address of the server to ping. Must not include a port number.
      * @returns {DewPromise} A promise that will be resolved once the ping is sent.
      */
-    dew.ping = function (address) {
+	 dew.ping = function (address, port=11774) {
         return dew.callMethod("ping", function () {
             return {
-                address: address.toString()
+                address: address.toString(),
+				port: port
             };
         });
     }
 
     /**
      * (ASYNCHRONOUS) Gets info about the current map variant.
-     * 
+     *
      * If map variant info is not available, the promise will be rejected with a [DewErrorCode.NOT_AVAILABLE]{@link DewErrorCode} error.
-     * 
+     *
      * @returns {DewPromise&lt;MapVariantInfo>} A promise for the map variant info.
      */
     dew.getMapVariantInfo = function () {
@@ -439,9 +467,9 @@ CommandType = {
 
     /**
      * (ASYNCHRONOUS) Gets info about the current game variant.
-     * 
+     *
      * If game variant info is not available, the promise will be rejected with a [DewErrorCode.NOT_AVAILABLE]{@link DewErrorCode} error.
-     * 
+     *
      * @returns {DewPromise&lt;GameVariantInfo>} A promise for the game variant info.
      */
     dew.getGameVariantInfo = function () {
@@ -465,7 +493,7 @@ CommandType = {
 
     /**
      * (ASYNCHRONOUS) Gets a list of available console commands.
-     * 
+     *
      * @returns {DewPromise&lt;ConsoleCommand[]>} A promise for the list of available console commands.
      */
     dew.getCommands = function () {
@@ -496,6 +524,134 @@ CommandType = {
      */
 
     /**
+     * (ASYNCHRONOUS) Sends a chat message.
+     *
+     * @param {string} message - The chat message to send.
+     * @param {boolean} teamChat - If true the message is sent to team chat instead of global.
+     * @returns {DewPromise&lt;boolean>} A promise for the success of sending the message.
+     */
+    dew.sendChat = function (message, teamChat) {
+        return dew.callMethod("sendChat", function () {
+            return {
+                message: message.toString(),
+                teamChat: teamChat
+            };
+        });
+     }
+
+    /**
+     * (ASYNCHRONOUS) Gets information about the current game multiplayer session.
+     *
+     * @param {string} message - The chat message to send.
+     * @param {boolean} teamChat - If true the message is sent to team chat instead of global.
+     * @returns {DewPromise&lt;SessionInfo>} A promise for the game multiplayer session information.
+     */
+    dew.getSessionInfo = function () {
+        return dew.callMethod("sessionInfo", {}, jsonResultMapping);
+    }
+
+    /**
+     * Contains information about the current game multiplayer session
+     *
+     * @typedef {object} SessionInfo
+     * @property {boolean} established - `true` if a session is established.
+     * @property {boolean} hasTeams - `true` if the current session has teams.
+     * @property {boolean} isHost - `true` if the player is the host of the session.
+     * @property {string} mapName - Name of the currently loaded map.
+     * @see dew.getSessionInfo
+     */
+
+    /**
+     * (ASYNCHRONOUS) Gets information about a player's stats.
+     *
+     * @param {string} playerName - The name of the player.
+     * @returns {DewPromise&lt;StatsInfo>} A promise for the player's stats.
+     */
+     dew.getStats = function (playerName) {
+         return dew.callMethod("stats", { playerName: playerName }, jsonResultMapping);
+     }
+
+    /**
+     * Contains information about the player's stats
+     *
+     * @typedef {object} StatsInfo
+     * @property {number[]} medals - The medals earned during this game.
+     * @property {WeaponStats[]} weapons - Information about the weapons used during this game.
+     * @see dew.getStats
+     */
+
+    /**
+     * Information about a weapon's use in the current game
+     *
+     * @typedef {object} WeaponStats
+     * @property {number} BetrayalsWith - How many times the player used this weapon to betray their teammates.
+     * @property {number} HeadshotsWith - How many headshots the player got with this weapon.
+     * @property {number} KilledBy - How many times the player was killed by this weapon.
+     * @property {number} Kills - How many kills the player got with this weapon.
+     * @property {number} SuicidesWith - How many times the player killed themselves with this weapon.
+     * @see StatsInfo
+     */
+
+	/**		
+     * (ASYNCHRONOUS) Gets information about the current game's scoreboard.		
+     *		
+     * @returns {DewPromise&lt;ScoreboardInfo>} A promise for the scoreboard information.		
+     */	
+	 
+    dew.getScoreboard = function () {		
+       return dew.callMethod("scoreboard", {}, jsonResultMapping);		
+    }		
+	
+   /**		
+    * Contains information about the scoreboard.		
+    *		
+    * @typedef {object} ScoreboardInfo		
+    * @property {boolean} hasTeams - `true` if the current session has teams.		
+    * @property {number[]} teamScores - The scores of all of the teams in the game.		
+    * @property {string} gameType - The gamemode type.		
+    * @property {ScoreboardPlayer[]} players - Players listed on the scoreboard.		
+    * @see dew.getScoreboard		
+    */		
+	
+   /**		
+    * Contains information about a player on the scoreboard.		
+    *		
+    * @typedef {object} ScoreboardPlayer		
+    * @property {string} name - The player's name.		
+    * @property {number} team - The player's team index.		
+    * @property {string} color - The player's primary armor color.		
+    * @property {string} UID - The player's UID.		
+    * @property {number} kills - The number of kills.		
+    * @property {number} assists - The number of assists.		
+    * @property {number} deaths - The number of deaths.		
+    * @property {number} score - The player's score.		
+    * @see ScoreboardInfo		
+    */
+	
+    /**
+     * (ASYNCHRONOUS) Requests to submit the currently-active virtual keyboard.
+     * 
+     * @param {string} value - The value to submit.
+     * @returns {DewPromise} A promise that will be resolved once the keyboard is submitted.
+     */
+    dew.submitVirtualKeyboard = function (value) {
+        return dew.callMethod("submitVirtualKeyboard", function () {
+            return {
+                value: value.toString(),
+            };
+        });
+    }
+
+    /**
+     * (ASYNCHRONOUS) Requests to cancel the currently-active virtual keyboard.
+     * 
+     * @returns {DewPromise} A promise that will be resolved once the keyboard is cancelled.
+     */
+    dew.cancelVirtualKeyboard = function (value) {
+        return dew.callMethod("cancelVirtualKeyboard");
+    }
+
+    /**
      * Registers a callback to be run when an event occurs.
      *
      * @name dew.on
@@ -508,76 +664,130 @@ CommandType = {
      * @see event:console
      * @see event:mpevent
      * @see event:loadprogress
+	 * @see event:signal-ready
      */
     dew.on = function (event, callback) {
         registerEvent(event, callback);
     }
-
-    /**
-     * A callback function for responding to events.
+	
+	/**
+     * (ASYNCHRONOUS) Queues a game action to be pressed in-game
      *
-     * @callback EventCallback
-     * @param {object} event - The event information.
-     * @param {string} event.event - The name of the event.
-     * @param {string} event.screen - The ID of the screen the event was sent to.
-     * @param {string} event.data - Event-specific data.
+     * @param {integer} actionIndex - The index of the game action to be pressed.
      */
+	dew.gameaction = function(actionIndex) {
+		return dew.callMethod("gameaction", {
+			key: actionIndex
+		});
+	}
+	
+	//This is a workaround for a bug in jsdoc. Event definitions must be inside a named function
+	dew.functionforevents = function() {
+		/**
+		 * A callback function for responding to events.
+		 *
+		 * @callback EventCallback
+		 * @param {object} event - The event information.
+		 * @param {string} event.event - The name of the event.
+		 * @param {string} event.screen - The ID of the screen the event was sent to.
+		 * @param {string} event.data - Event-specific data.
+		 */
 
-    /**
-     * Fired after the current screen is shown.
-     * The data passed to this event is the data that was passed to {@link dew.show}.
-     *
-     * @event show
-     * @type {object}
-     */
+		/**
+		 * Fired after the current screen is shown.
+		 * The data passed to this event is the data that was passed to {@link dew.show}.
+		 *
+		 * @event show
+		 * @type {object}
+		 */
 
-    /**
-     * Fired after the current screen is hidden.
-     *
-     * @event hide
-     * @type {object}
-     */
+		/**
+		 * Fired after the current screen is hidden.
+		 *
+		 * @event hide
+		 * @type {object}
+		 */
 
-    /**
-     * Fired when a server replies to a [ping]{@link dew.ping}.
-     * This can only be received while the screen is active.
-     *
-     * @event pong
-     * @type {object}
-     * @property {string} address - The IP address of the server.
-     * @property {number} latency - The round-trip time of the ping in milliseconds.
-     * @property {number} timestamp - A timestamp value representing when the ping was sent.
-     */
+		/**
+		 * Fired when a server replies to a [ping]{@link dew.ping}.
+		 * This can only be received while the screen is active.
+		 *
+		 * @event pong
+		 * @type {object}
+		 * @property {string} address - The IP address of the server.
+		 * @property {number} latency - The round-trip time of the ping in milliseconds.
+		 * @property {number} timestamp - A timestamp value representing when the ping was sent.
+		 */
 
-    /**
-     * Fired when a line is written to the in-game console.
-     * 
-     * @event console
-     * @type {object}
-     * @property {string} line - The line that was written. **Make sure to escape this properly before displaying it.**
-     */
+		/**
+		 * Fired when a line is written to the in-game console.
+		 *
+		 * @event console
+		 * @type {object}
+		 * @property {string} line - The line that was written. **Make sure to escape this properly before displaying it.**
+		 */
 
-    /**
-     * Fired when a multiplayer event occurs that affects the local player.
-     * 
-     * @event mpevent
-     * @type {object} 
-     * @property {string} name - The internal name of the event.
-     * @property {MPEventCategory} category - The event's category.
-     * @property {MPEventAudience} audience - The audience that the event is intended for.
-     */
+		/**		
+		 * Fires when the scoreboard is updated		
+		 *		
+		 * @event scoreboard		
+		 * @type {ScoreboardInfo}		
+		 */
+	 
+		/**
+		 * Fired when a multiplayer event occurs that affects the local player.
+		 *
+		 * @event mpevent
+		 * @type {object}
+		 * @property {string} name - The internal name of the event.
+		 * @property {MPEventCategory} category - The event's category.
+		 * @property {MPEventAudience} audience - The audience that the event is intended for.
+		 */
 
-    /**
-     * Fired when the loading screen is active and the loading progress changes.
-     * 
-     * This event is only sent to visible screens.
-     * 
-     * @event loadprogress
-     * @type {object}
-     * @property {number} currentBytes - The current number of bytes that have been decompressed.
-     * @property {number} totalBytes - The total number of bytes that need to be decompressed.
-     */
-})();</code></pre>
+		/**
+		 * Fired when the loading screen is active and the loading progress changes.
+		 *
+		 * This event is only sent to visible screens.
+		 *
+		 * @event loadprogress
+		 * @type {object}
+		 * @property {number} currentBytes - The current number of bytes that have been decompressed.
+		 * @property {number} totalBytes - The total number of bytes that need to be decompressed.
+		 */
+
+		/**
+		 * Fired when a chat message is received.
+		 *
+		 * @event chat
+		 * @type {object}
+		 * @property {string} message - The chat message. **Make sure to escape this properly before displaying it.**
+		 * @property {string} sender - The username that sent this message. **Make sure to escape this properly before displaying it.**
+		 * @property {string} chatType - The type of message that was received. Can be "GLOBAL", "TEAM", "WHISPER", or "SERVER".
+		 * @property {number} teamIndex - The team index of the player. Not included when chatType is "SERVER".
+		 * @property {string} UID - The UID of the player. Not included when chatType is "SERVER".
+		 * @property {string} color - The hex color of the player's primary armor color. Not included when chatType is "SERVER".
+		 */
+
+		 /**
+		  * Fired when attempting to connect to a server and when the connection succeeds or fails.
+		  *
+		  * @event serverconnect
+		  * @type {object}
+		  * @property {boolean} connecting - True if the client is currently trying to connect to the server.
+		  * @property {boolean} success - True if the client successfully connected to the server. Will always be false if connecting is true.
+		  */
+		  
+		 /**
+		  * Fired when the game client receives the websocket connection information packet.
+		  * 
+		  * @event signal-ready
+		  * @type {object}
+		  * @property {string} server - The ip + port of the signal server in the format ip:port
+		  * @property {string} password - The password assigned for the client to connect with
+		  */
+	}
+})();
+</code></pre>
         </article>
     </section>
 
@@ -587,13 +797,13 @@ CommandType = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:chat">chat</a></li><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:scoreboard">scoreboard</a></li><li><a href="global.html#event:serverconnect">serverconnect</a></li><li><a href="global.html#event:show">show</a></li><li><a href="global.html#event:signal-ready">signal-ready</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li><li><a href="tutorial-SignalServer.html">Signal Server</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Mar 28 2016 05:22:34 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 24 2018 20:22:32 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

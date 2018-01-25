@@ -72,7 +72,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line282">line 282</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line285">line 285</a>
     </li></ul></dd>
     
 
@@ -94,7 +94,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -108,7 +110,117 @@
 
     
 
+    
+    <h4 class="name" id=".cancelVirtualKeyboard"><span class="type-signature">(static) </span>cancelVirtualKeyboard<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Requests to cancel the currently-active virtual keyboard.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line622">line 622</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that will be resolved once the keyboard is cancelled.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".captureInput"><span class="type-signature">(static) </span>captureInput<span class="signature">(capture)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -208,7 +320,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line345">line 345</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line360">line 360</a>
     </li></ul></dd>
     
 
@@ -234,12 +346,152 @@
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id=".capturePointer"><span class="type-signature">(static) </span>capturePointer<span class="signature">(capture)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Requests to change this screen's pointer capture state.
+This is overridden by dew.captureInput</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>capture</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>true to only capture mouse input, false to release.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line372">line 372</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".command"><span class="type-signature">(static) </span>command<span class="signature">(command, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;string>}</span></h4>
+    
 
     
 
@@ -453,7 +705,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line362">line 362</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line389">line 389</a>
     </li></ul></dd>
     
 
@@ -501,12 +753,151 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id=".gameaction"><span class="type-signature">(static) </span>gameaction<span class="signature">(actionIndex)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Queues a game action to be pressed in-game</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actionIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The index of the game action to be pressed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line650">line 650</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".getCommands"><span class="type-signature">(static) </span>getCommands<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;Array.&lt;<a href="global.html#ConsoleCommand">ConsoleCommand</a>>>}</span></h4>
+    
 
     
 
@@ -557,7 +948,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line443">line 443</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line471">line 471</a>
     </li></ul></dd>
     
 
@@ -605,12 +996,16 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".getGameVariantInfo"><span class="type-signature">(static) </span>getGameVariantInfo<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#GameVariantInfo">GameVariantInfo</a>>}</span></h4>
+    
 
     
 
@@ -662,7 +1057,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line419">line 419</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line447">line 447</a>
     </li></ul></dd>
     
 
@@ -710,12 +1105,16 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".getMapVariantInfo"><span class="type-signature">(static) </span>getMapVariantInfo<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#MapVariantInfo">MapVariantInfo</a>>}</span></h4>
+    
 
     
 
@@ -767,7 +1166,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line397">line 397</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line425">line 425</a>
     </li></ul></dd>
     
 
@@ -815,12 +1214,461 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id=".getScoreboard"><span class="type-signature">(static) </span>getScoreboard<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#ScoreboardInfo">ScoreboardInfo</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Gets information about the current game's scoreboard.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line573">line 573</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for the scoreboard information.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#ScoreboardInfo">ScoreboardInfo</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getSessionInfo"><span class="type-signature">(static) </span>getSessionInfo<span class="signature">(message, teamChat)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#SessionInfo">SessionInfo</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Gets information about the current game multiplayer session.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The chat message to send.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teamChat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true the message is sent to team chat instead of global.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line521">line 521</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for the game multiplayer session information.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#SessionInfo">SessionInfo</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getStats"><span class="type-signature">(static) </span>getStats<span class="signature">(playerName)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#StatsInfo">StatsInfo</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Gets information about a player's stats.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>playerName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the player.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line542">line 542</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for the player's stats.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a>.&lt;<a href="global.html#StatsInfo">StatsInfo</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".getVersion"><span class="type-signature">(static) </span>getVersion<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;string>}</span></h4>
+    
 
     
 
@@ -871,7 +1719,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line305">line 305</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line308">line 308</a>
     </li></ul></dd>
     
 
@@ -921,12 +1769,16 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".hide"><span class="type-signature">(static) </span>hide<span class="signature">(id<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1039,7 +1891,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line334">line 334</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line337">line 337</a>
     </li></ul></dd>
     
 
@@ -1065,12 +1917,196 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id=".notify"><span class="type-signature">(static) </span>notify<span class="signature">(eventName<span class="signature-attributes">opt</span>, data<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Sends a dew event to another screen</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eventName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the event for another screen to receive.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Data to pass to the screen.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line349">line 349</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".on"><span class="type-signature">(static) </span>on<span class="signature">(event, callback)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1193,7 +2229,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line470">line 470</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line626">line 626</a>
     </li></ul></dd>
     
 
@@ -1214,6 +2250,8 @@ The error message will be the command output.</p>
             <li><a href="global.html#event:mpevent">event:mpevent</a></li>
         
             <li><a href="global.html#event:loadprogress">event:loadprogress</a></li>
+        
+            <li><a href="global.html#event:signal-ready">event:signal-ready</a></li>
         </ul>
     </dd>
     
@@ -1236,12 +2274,16 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".ping"><span class="type-signature">(static) </span>ping<span class="signature">(address)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>}</span></h4>
+    
 
     
 
@@ -1343,7 +2385,7 @@ The error message will be the command output.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line382">line 382</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line409">line 409</a>
     </li></ul></dd>
     
 
@@ -1391,12 +2433,196 @@ The error message will be the command output.</p>
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id=".sendChat"><span class="type-signature">(static) </span>sendChat<span class="signature">(message, teamChat)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>.&lt;boolean>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Sends a chat message.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The chat message to send.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teamChat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true the message is sent to team chat instead of global.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line505">line 505</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise for the success of sending the message.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a>.&lt;boolean></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".show"><span class="type-signature">(static) </span>show<span class="signature">(id<span class="signature-attributes">opt</span>, data<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1544,7 +2770,7 @@ You can use this as a simple means of sending messages between screens.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line320">line 320</a>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line323">line 323</a>
     </li></ul></dd>
     
 
@@ -1570,6 +2796,165 @@ You can use this as a simple means of sending messages between screens.</p>
 
 
 
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".submitVirtualKeyboard"><span class="type-signature">(static) </span>submitVirtualKeyboard<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="global.html#DewPromise">DewPromise</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>(ASYNCHRONOUS) Requests to submit the currently-active virtual keyboard.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to submit.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dew.js.html">dew.js</a>, <a href="dew.js.html#line609">line 609</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that will be resolved once the keyboard is submitted.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#DewPromise">DewPromise</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
         
     
 
@@ -1586,13 +2971,13 @@ You can use this as a simple means of sending messages between screens.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:show">show</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DewError.html">DewError</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:chat">chat</a></li><li><a href="global.html#event:console">console</a></li><li><a href="global.html#event:hide">hide</a></li><li><a href="global.html#event:loadprogress">loadprogress</a></li><li><a href="global.html#event:mpevent">mpevent</a></li><li><a href="global.html#event:pong">pong</a></li><li><a href="global.html#event:scoreboard">scoreboard</a></li><li><a href="global.html#event:serverconnect">serverconnect</a></li><li><a href="global.html#event:show">show</a></li><li><a href="global.html#event:signal-ready">signal-ready</a></li></ul><h3>Namespaces</h3><ul><li><a href="dew.html">dew</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-CommonTasks.html">Common Tasks</a></li><li><a href="tutorial-Debugging.html">Debugging</a></li><li><a href="tutorial-GettingStarted.html">Getting Started</a></li><li><a href="tutorial-SignalServer.html">Signal Server</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CommandType">CommandType</a></li><li><a href="global.html#DewErrorCode">DewErrorCode</a></li><li><a href="global.html#GameMode">GameMode</a></li><li><a href="global.html#MPEventAudience">MPEventAudience</a></li><li><a href="global.html#MPEventCategory">MPEventCategory</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Mar 28 2016 05:22:34 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 24 2018 20:22:32 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
